@@ -8,7 +8,7 @@ from .forms import EnergyDataForm
 
 # Create your views here.
 def home(req):
-    energy_data = EnergyData.data.all()
+    energy_data = EnergyData.data.all().order_by("-date_read")[:5]
     form = EnergyDataForm()
 
     context = {

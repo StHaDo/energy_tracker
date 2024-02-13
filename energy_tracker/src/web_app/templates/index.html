@@ -2,9 +2,13 @@
 {% block title %}{{title}}{% endblock title %}
 {% block content %}
 <div class="mt-5">
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {{form.media}}
     <form action="{% url "new-entry" %}" method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        {% bootstrap_form form %}
         <input class="btn btn-success" type="submit" value="Eintragen">
     </form>
 </div>
@@ -14,9 +18,10 @@
 <table class="table table-striped table-sm">
     <thead class="table-dark">
       <tr>
-        <th scope="col">Datum</th>
+        <th scope="col">Ablesedatum</th>
         <th scope="col">Einkauf (180)</th>
         <th scope="col">Einspeisung (280)</th>
+        <th scope="col">Letzte Änderung</th>
       </tr>
     </thead>    
     <tbody class="table-group-divider">
@@ -25,6 +30,7 @@
         <td>{{data.date_read}}</td>
         <td>{{data.energy_buy}} kWh</td>
         <td>{{data.energy_sell}} kWh</td>
+        <td>{{data.last_change}}</td>
       </tr>
     {% endfor %}
     </tbody>
