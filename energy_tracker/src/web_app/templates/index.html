@@ -22,6 +22,7 @@
         <th scope="col">Einkauf (180)</th>
         <th scope="col">Einspeisung (280)</th>
         <th scope="col">Letzte Änderung</th>
+        <th></th>
       </tr>
     </thead>    
     <tbody class="table-group-divider">
@@ -31,6 +32,7 @@
         <td>{{data.energy_buy}} kWh</td>
         <td>{{data.energy_sell}} kWh</td>
         <td>{{data.last_change}}</td>
+        <td><a href={% url "edit-entry" data.id %} class="btn btn-secondary">Ändern</a></td>
       </tr>
     {% endfor %}
     </tbody>
