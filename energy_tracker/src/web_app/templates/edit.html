@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+<div class="mt-5">
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {{form.media}}
+    <form action="{% url "edit-entry" data.id %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input class="btn btn-success" type="submit" value="Speichern">
+    </form>
+</div>
+{% endblock content %}
