@@ -7,13 +7,9 @@ from .forms import EnergyDataForm
 
 
 # Create your views here.
-def home(req, id=0):
-    energy_data = EnergyData.data.all().order_by("-date_read")
-    if id == 0:
-        form = EnergyDataForm()
-    else:
-        data = EnergyData.data.get(pk=id)
-        form = EnergyDataForm(instance=data)
+def home(req):
+    energy_data = EnergyData.data.all().order_by("-date_read")[:5]
+    form = EnergyDataForm()
 
     context = {
         "title": "Zählerstand",
@@ -21,6 +17,15 @@ def home(req, id=0):
         "form": form,
     }
     return render(req, "index.html", context)
+
+
+def overview(req):
+    energy_data = EnergyData.data.all().order_by("-date_read")
+    context = {
+        "title": "Übersicht",
+        "energy_data": energy_data,
+    }
+    return render(req, "overview.html", context)
 
 
 def new_entry(req):
